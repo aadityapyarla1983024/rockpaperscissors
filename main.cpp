@@ -1,3 +1,5 @@
+
+#include <limits>
 #include <iostream>
 #include <ctime>
 using std::cout, std::cin, std::endl, std::string;
@@ -33,6 +35,9 @@ int main()
         {
             checker(userguess, computerguess());
             cout << "-------------------------------------------------" << endl;
+        }
+        else if(userguess < 1 && userguess > 4) {
+            cout << "Enter a valid input" << endl;
         }
         else
         {
@@ -149,6 +154,11 @@ int prompt(){
     cout << "\n";
     cout << "\n";
     cout << "Enter your guess: ";
-    cin >> userguess;
+    while (!(cin >> userguess) || userguess < 1 || userguess > 4) {
+        cout << "Invalid input." << endl;
+        cout << "Enter your guess: ";
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
     return userguess;
 }
